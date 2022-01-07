@@ -1,9 +1,8 @@
-package com.osintsev.market.rest.controllers;
+package com.osintsev.market.rest.controller;
 
-import com.osintsev.market.goods.BeatsServiceImpl;
+import com.osintsev.market.goods.BeatService;
 import com.osintsev.market.rest.dto.Beat;
 import com.osintsev.market.rest.dto.Beats;
-import com.osintsev.market.exception.BeatNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,10 +20,10 @@ public class BeatController {
 
     private static long idOfBeat = 0L;
 
-    private final BeatsServiceImpl beatService;
+    private final BeatService beatService;
 
     @Autowired
-    public BeatController(BeatsServiceImpl beatService) {
+    public BeatController(BeatService beatService) {
         beats.setBeatList(new ArrayList<>());
         this.beatService = beatService;
     }
@@ -35,21 +34,18 @@ public class BeatController {
 
 
     @GetMapping(value = "beats", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Beats beats() {
+    public Beats getBeats() {
         return beatService.getBeats();
     }
 
     @GetMapping(value = "beat/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Beat beat(@PathVariable Long id) {
-        return beatService.getBeats().getBeatList().stream()
-                .filter(c -> c.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new BeatNotFoundException("No such beat exists"));
+    public Beat getBeat(@PathVariable Long id) {
+        return beatService.getBeat(id);
     }
 
     @PostMapping(path = "beat/create",
                 consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Beat> create(@RequestBody @Valid Beat newBeat) {
+    public ResponseEntity<Beat> createBeat(@RequestBody @Valid Beat newBeat) {
         newBeat.setId(createIdForBeat());
         beats.getBeatList().add(newBeat);
         return new ResponseEntity<>(HttpStatus.CREATED);
