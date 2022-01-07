@@ -14,7 +14,7 @@ import static org.mockito.ArgumentMatchers.any;
 public class BeatControllerTest {
 
     @Test
-    void testBeats() {
+    void testGetBeats() {
         BeatService beatService = Mockito.mock(BeatService.class);
         Beats beats = new Beats();
         Mockito.doReturn(beats).when(beatService).getBeats();
@@ -25,7 +25,7 @@ public class BeatControllerTest {
     }
 
     @Test
-    void testBeatById() {
+    void testGetBeat() {
         BeatService beatService = Mockito.mock(BeatService.class);
         Beat beat = new Beat();
         Mockito.doReturn(beat).when(beatService).getBeat(any());
