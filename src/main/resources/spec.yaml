@@ -1,0 +1,53 @@
+openapi: 3.0.3
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'http'
+paths:
+  /beat:
+    get:
+      description: Get list of beats
+      responses:
+        200:
+          description: Successful service execution
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/beats'
+
+components:
+  schemas:
+    beats:
+      additionalProperties: false
+      type: object
+      properties:
+        beat_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/beat'
+
+    beat:
+      type: object
+      description: Beat data
+      required:
+        - name
+        - genre
+        - image
+        - price
+      properties:
+        name:
+          type: string
+          description: Name
+        genre:
+          type: string
+          description: Genre
+        image:
+          type: string
+          description: Relative url of image
+        price:
+          type: number
+          description: Price
+
