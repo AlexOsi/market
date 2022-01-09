@@ -34,7 +34,7 @@ ALTER TABLE "beat"
     ADD CONSTRAINT FK_BEAT_ON_AUDIO FOREIGN KEY (audio_id) REFERENCES audio (id);
 
 ALTER TABLE "user"
-    ADD COLUMN password VARCHAR(255) NOT NULL;
+    ADD COLUMN password VARCHAR(255) NOT NULL default 'defaultValue';
 
 CREATE TABLE "order"
 (
@@ -61,3 +61,8 @@ ALTER TABLE purchase
 
 ALTER TABLE purchase
     ADD CONSTRAINT FK_PURCHASE_ON_ORDER FOREIGN KEY (order_id) REFERENCES "order" (id);
+
+ALTER TABLE "beat"
+    ADD COLUMN bpm INTEGER,
+    ADD COLUMN key VARCHAR(255),
+    ALTER COLUMN audio_id SET NOT NULL;
