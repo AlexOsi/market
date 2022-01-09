@@ -2,6 +2,7 @@ package com.osintsev.market.database.beat;
 
 import com.osintsev.market.exception.BeatNotFoundException;
 import com.osintsev.market.rest.dto.Beat;
+import com.osintsev.market.rest.dto.BeatDetailed;
 import com.osintsev.market.rest.dto.Beats;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,7 @@ public class BeatServiceImpl implements BeatService {
         return beats;
     }
 
+
     @Override
     public Beat getBeat(Long id) throws BeatNotFoundException {
 
@@ -43,13 +45,40 @@ public class BeatServiceImpl implements BeatService {
         }
     }
 
+    @Override
+    public BeatDetailed getDetailedBeat(Long id) throws BeatNotFoundException {
+        Optional<BeatEntity> optionalBeat = beatRepository.findById(id);
+        if (optionalBeat.isPresent()) {
+            BeatEntity beatEntity = optionalBeat.get();
+            return createDetailedBeatFromBeatEntity(beatEntity);
+        }
+        else {
+            throw new BeatNotFoundException("No such beat exists");
+        }
+    }
+
     private Beat createBeatFromBeatEntity(BeatEntity beatEntity) {
         Beat beat = new Beat();
         beat.setId(beatEntity.getId());
         beat.setName(beatEntity.getName());
-        beat.setGenre(beatEntity.getGenre());
         beat.setImage(beatEntity.getImage());
         beat.setPrice(beatEntity.getPrice());
+        beat.setAudio(beatEntity.getAudio());
         return beat;
     }
+
+    private BeatDetailed createDetailedBeatFromBeatEntity(BeatEntity beatEntity) {
+        BeatDetailed beatDetailed = new BeatDetailed();
+        beatDetailed.setId(beatEntity.getId());
+        beatDetailed.setName(beatEntity.getName());
+        beatDetailed.setImage(beatEntity.getImage());
+        beatDetailed.setPrice(beatEntity.getPrice());
+        beatDetailed.setAudio(beatEntity.getAudio());
+        beatDetailed.setBPM(beatEntity.getBPM());
+        beatDetailed.setGenre(beatEntity.getGenre());
+        beatDetailed.setKey(beatEntity.getKey());
+        beatDetailed.setLoadDate(beatEntity.getLoadDate());
+        return beatDetailed;
+    }
+
 }
