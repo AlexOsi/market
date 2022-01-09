@@ -1,19 +1,21 @@
-package com.osintsev.market.goods;
+package com.osintsev.market.database.beat;
 
+import com.osintsev.market.database.audio.AudioEntity;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
 @Getter
-@Setter
+@Setter(AccessLevel.PROTECTED)
 @ToString
 @RequiredArgsConstructor
 @Table(name = "BEAT")
-class BeatEntity {
+public class BeatEntity {
 
     @Setter(AccessLevel.NONE)
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
@@ -25,6 +27,13 @@ class BeatEntity {
     private String image;
 
     private BigDecimal price;
+
+    private Date loadDate;
+
+    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private AudioEntity audio;
+
 
     @Override
     public boolean equals(Object o) {
