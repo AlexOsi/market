@@ -1,7 +1,8 @@
 package com.osintsev.market.rest.controller;
 
-import com.osintsev.market.goods.BeatService;
-import com.osintsev.market.rest.dto.Beat;
+import com.osintsev.market.database.beat.BeatService;
+import com.osintsev.market.exception.BeatNotFoundException;
+import com.osintsev.market.rest.dto.BeatDetailed;
 import com.osintsev.market.rest.dto.Beats;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -25,16 +26,24 @@ public class BeatControllerTest {
     }
 
     @Test
-    void testGetBeat() {
+    void testGetDetailedBeat() {
         BeatService beatService = Mockito.mock(BeatService.class);
-        Beat beat = new Beat();
-        Mockito.doReturn(beat).when(beatService).getBeat(any());
+        BeatDetailed beat = new BeatDetailed();
+        try {
+            Mockito.doReturn(beat).when(beatService).getBeat(any());
+        } catch (BeatNotFoundException e) {
+            e.printStackTrace();
+        }
         BeatController beatController = new BeatController(beatService);
         Long id = 2L;
-        Beat beatTest = beatController.getBeat(id);
+        BeatDetailed beatTest = beatController.getDetailedBeat(id);
         AssertionErrors.assertEquals("", beatTest, beat);
         ArgumentCaptor<Long> argumentCaptor = ArgumentCaptor.forClass(Long.class);
-        Mockito.verify(beatService, Mockito.times(1)).getBeat(argumentCaptor.capture());
+        try {
+            Mockito.verify(beatService, Mockito.times(1)).getBeat(argumentCaptor.capture());
+        } catch (BeatNotFoundException e) {
+            e.printStackTrace();
+        }
         AssertionErrors.assertEquals("", argumentCaptor.getValue(), id);
 
     }

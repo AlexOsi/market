@@ -1,7 +1,8 @@
 package com.osintsev.market.rest.controller;
 
-import com.osintsev.market.goods.BeatService;
+import com.osintsev.market.database.beat.BeatService;
 import com.osintsev.market.rest.dto.Beat;
+import com.osintsev.market.rest.dto.BeatDetailed;
 import com.osintsev.market.rest.dto.Beats;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,8 +40,8 @@ public class BeatController {
     }
 
     @GetMapping(value = "beat/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Beat getBeat(@PathVariable Long id) {
-        return beatService.getBeat(id);
+    public BeatDetailed getDetailedBeat(@PathVariable Long id) {
+        return beatService.getDetailedBeat(id);
     }
 
     @PostMapping(path = "beat/create",
