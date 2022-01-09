@@ -30,10 +30,14 @@ public class BeatEntity {
 
     private Date loadDate;
 
-    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+    @JoinColumn(nullable = false)
+    @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
     @ToString.Exclude
     private AudioEntity audio;
 
+    private Integer BPM;
+
+    private String key;
 
     @Override
     public boolean equals(Object o) {
