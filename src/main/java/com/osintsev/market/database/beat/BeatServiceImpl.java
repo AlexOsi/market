@@ -1,4 +1,4 @@
-package com.osintsev.market.goods;
+package com.osintsev.market.database.beat;
 
 import com.osintsev.market.exception.BeatNotFoundException;
 import com.osintsev.market.rest.dto.Beat;
@@ -31,7 +31,7 @@ public class BeatServiceImpl implements BeatService {
     }
 
     @Override
-    public Beat getBeat(Long id) {
+    public Beat getBeat(Long id) throws BeatNotFoundException {
 
         Optional<BeatEntity> optionalBeat = beatRepository.findById(id);
         if (optionalBeat.isPresent()) {
