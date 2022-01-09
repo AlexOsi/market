@@ -9,11 +9,12 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import java.math.BigDecimal;
+import java.sql.Date;
 
 @Data
-@Schema(description = "Beat data")
+@Schema(description = "Detailed beat data")
 @Validated
-public class Beat {
+public class BeatDetailed {
 
     @Null
     @Schema(description = "id")
@@ -39,4 +40,22 @@ public class Beat {
     @Schema(description = "Audio files URLs", required = true)
     @JsonProperty("audio")
     private AudioEntity audio;
+
+    @Schema(description = "Genre", required = true)
+    @JsonProperty("genre")
+    private String genre;
+
+    @NotNull
+    @Schema(description = "Load date", required = true)
+    @JsonProperty("loadDate")
+    private Date loadDate;
+
+    @NotNull
+    @Schema(description = "BPM", required = true)
+    @JsonProperty("bpm")
+    private Integer BPM;
+
+    @Schema(description = "Key", required = true)
+    @JsonProperty("key")
+    private String key;
 }
