@@ -1,4 +1,4 @@
-package com.osintsev.market.database.audio;
+package com.osintsev.market.database.beat;
 
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -12,7 +12,7 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Table(name = "AUDIO")
-public class AudioEntity {
+class AudioEntity {
 
     @Setter(AccessLevel.NONE)
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;

@@ -1,6 +1,5 @@
 package com.osintsev.market.database.beat;
 
-import com.osintsev.market.database.audio.AudioEntity;
 import lombok.*;
 import org.hibernate.Hibernate;
 
