@@ -9,4 +9,5 @@ public interface BeatService {
     Beats getBeats();
     Beat getBeat(Long id) throws BeatNotFoundException;
     BeatDetailed getDetailedBeat(Long id) throws BeatNotFoundException;
+    void createDetailedBeat(BeatDetailed beatDetailed);
 }
