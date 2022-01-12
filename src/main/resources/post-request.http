@@ -1,9 +1,4 @@
 POST http://localhost:8080/beat/create
 Content-Type: application/json
 
-{
-  "name": "test",
-  "genre": "test",
-  "image": "test",
-  "price": 5
-}
+{"name":"Bigbeat","image":"some.jpg","price":3000,"audio":{"wav":"newwav","mp3":"mp3","trackOut":"track_out"},"genre":"R&B","loadDate":"2022-01-14","bpm":130,"key":"C#m"}
