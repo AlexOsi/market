@@ -12,27 +12,18 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 
 @RestController
 @Validated
 public class BeatController {
-    private final Beats beats = new Beats();
 
-    private static long idOfBeat = 0L;
 
     private final BeatService beatService;
 
     @Autowired
     public BeatController(BeatService beatService) {
-        beats.setBeatList(new ArrayList<>());
         this.beatService = beatService;
     }
-
-    private long createIdForBeat() {
-        return idOfBeat++;
-    }
-
 
     @GetMapping(value = "beats", produces = MediaType.APPLICATION_JSON_VALUE)
     public Beats getBeats() {
@@ -46,9 +37,8 @@ public class BeatController {
 
     @PostMapping(path = "beat/create",
                 consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Beat> createBeat(@RequestBody @Valid Beat newBeat) {
-        newBeat.setId(createIdForBeat());
-        beats.getBeatList().add(newBeat);
+    public ResponseEntity<Beat> createBeat(@RequestBody @Valid BeatDetailed beatDetailed) {
+        beatService.createDetailedBeat(beatDetailed);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
