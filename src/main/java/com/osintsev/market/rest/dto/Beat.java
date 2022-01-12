@@ -1,7 +1,6 @@
 package com.osintsev.market.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.osintsev.market.database.audio.AudioEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
@@ -38,5 +37,5 @@ public class Beat {
     @NotNull
     @Schema(description = "Audio files URLs", required = true)
     @JsonProperty("audio")
-    private AudioEntity audio;
+    private Audio audio;
 }
