@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <title>Beat market admin</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<h2>
+    <a th:href="@{/admin/menu}">Menu</a>
+</h2>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>User's name</th>
+        <th>User's email</th>
+        <th>Payment method</th>
+        <th>Order status</th>
+        <th>Purchases</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.user.name}"></td>
+        <td th:text="${order.user.email}"></td>
+        <td th:text="${order.status}"></td>
+        <td th:text="${order.payment}"></td>
+        <td>
+            <ul th:each="purchase : ${order.purchaseList}">
+                <li th:text="${purchase}"></li>
+            </ul>
+        </td>
+        <td>
+            <a th:href="@{/admin/order/{id} (id=${order.id})}">Edit</a>
+        </td>
+        <td>
+            <form action="#" method="get" th:action="@{/admin/order/delete/{id}(id=${order.id})}">
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

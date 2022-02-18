@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <title>Beat market admin</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<h3>
+    <a th:href="@{/admin/orders}"><-Orders list</a>
+</h3>
+<!-- Как вариант прокидывать order, как второй вариант - создать DTO OrderStatus -->
+<form action="#" th:action="@{/admin/order/{id}/status(id=${order.id})}" th:object="${order}" method="post">
+    <label for="status"></label>
+    <select id="status" name="status">
+        <option th:each="status : ${order.status.values()}"
+                th:value="${status}"
+                th:text="${status}"
+                th:selected="${order.status == status}">
+        </option>
+    </select>
+    <input type="submit" value="Submit" />
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>User's name</th>
+            <th>User's email</th>
+            <th>Payment method</th>
+            <th>Order status</th>
+            <th>Purchases</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${order.user.name}"></td>
+        <td th:text="${order.user.email}"></td>
+        <td th:text="${order.payment}"></td>
+        <td th:text="${order.status}"></td>
+        <td th:text="${order.purchaseList}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

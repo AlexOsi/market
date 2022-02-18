@@ -1,0 +1,18 @@
+POST http://localhost:8080/order/create
+Content-Type: application/json
+
+{
+  "user": {
+    "name": "Iosif",
+    "email": "stalin@great.ussr",
+    "password": "string"
+  },
+  "purchaseList": [
+    {
+      "beatId": 1,
+      "license": "MP3"
+    }
+  ],
+  "status": "NEW",
+  "payment": "PAYPAL"
+}

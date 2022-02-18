@@ -66,3 +66,26 @@ ALTER TABLE "beat"
     ADD COLUMN bpm INTEGER,
     ADD COLUMN key VARCHAR(255),
     ALTER COLUMN audio_id SET NOT NULL;
+
+ALTER TABLE "purchase"
+    ADD COLUMN license INTEGER;
+
+ALTER TABLE "user"
+    RENAME TO users;
+
+ALTER TABLE "order"
+    RENAME TO orders;
+
+ALTER TABLE "orders"
+    ALTER COLUMN status TYPE VARCHAR(255),
+    ALTER COLUMN payment TYPE VARCHAR(255);
+
+ALTER TABLE "purchase"
+    ALTER COLUMN license TYPE VARCHAR(255);
+
+ALTER TABLE "users"
+    DROP COLUMN password;
+
+ALTER TABLE "orders"
+    ALTER COLUMN status SET NOT NULL,
+    ALTER COLUMN payment SET NOT NULL;

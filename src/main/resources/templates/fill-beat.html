@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <title>Beat market admin</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<a th:href="@{/admin/beats}">Beats list</a>
+<form action="#" method="post" th:action="@{/admin/beat/create}" th:object="${beat}">
+    <p>
+        Name:
+        <label>
+            <input th:field="*{name}" type="text"/>
+        </label>
+    </p>
+    <p>
+        Image:
+        <label>
+            <input th:field="*{image}" type="text">
+        </label>
+    </p>
+    <p>
+        Price:
+        <label>
+            <input step="any" th:field="*{price}" type="number"/>
+        </label>
+    </p>
+    <p>
+        Audio:
+        Wav
+        <label>
+            <input th:field="*{audio.wav}" type="text">
+        </label>
+        MP3
+        <label>
+            <input th:field="*{audio.mp3}" type="text">
+        </label>
+        Track Out
+        <label>
+            <input th:field="*{audio.trackOut}" type="text">
+        </label>
+    </p>
+    <p>
+        Genre:
+        <label>
+            <input th:field="*{genre}" type="text"/>
+        </label>
+    </p>
+    <p>
+        Load date:
+        <label>
+            <input  th:field="*{loadDate}" type="date">
+        </label>
+    </p>
+    <p>
+        BPM:
+        <label>
+            <input step="any" th:field="*{BPM}" type="number"/>
+        </label>
+    </p>
+    <p>
+        Key:
+        <label>
+            <input th:field="*{key}" type="text">
+        </label>
+    </p>
+    <p>
+        <input type="submit" value="Submit"/>
+        <input type="reset" value="Reset"/>
+    </p>
+</form>
+</body>
+</html>

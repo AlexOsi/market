@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Beat market admin</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+<body>
+<h3>
+    <a th:href="@{/admin/beats}">Beats list</a>
+</h3>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Beat name</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>MP3</th>
+        <th>WAV</th>
+        <th>Track Out</th>
+        <th>Genre</th>
+        <th>Load Date</th>
+        <th>BPM</th>
+        <th>Key</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${beat.name}"></td>
+        <td th:text="${beat.image}"></td>
+        <td th:text="${beat.price}"></td>
+        <td th:text="${beat.audio.mp3}"></td>
+        <td th:text="${beat.audio.wav}"></td>
+        <td th:text="${beat.audio.trackOut}"></td>
+        <td th:text="${beat.genre}"></td>
+        <td th:text="${beat.loadDate}"></td>
+        <td th:text="${beat.BPM}"></td>
+        <td th:text="${beat.key}"></td>
+        <td>
+            <form action="#" method="get" th:action="@{/admin/beat/delete/{id}(id=${beat.id})}">
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
