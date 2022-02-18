@@ -18,17 +18,18 @@ public class PurchaseEntity {
     @Setter(AccessLevel.NONE)
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
-    @Setter(AccessLevel.PRIVATE)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     @ToString.Exclude
     private OrderEntity order;
 
-    @Setter(AccessLevel.PRIVATE)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     @ToString.Exclude
     private BeatEntity beat;
+
+    @Enumerated(value = EnumType.STRING)
+    private LicenseType license;
 
     @Override
     public boolean equals(Object o) {

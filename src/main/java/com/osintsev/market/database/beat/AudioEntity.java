@@ -8,11 +8,11 @@ import java.util.Objects;
 
 @Entity
 @Getter
-@Setter(AccessLevel.PROTECTED)
+@Setter
 @ToString
 @RequiredArgsConstructor
 @Table(name = "AUDIO")
-class AudioEntity {
+public class AudioEntity {
 
     @Setter(AccessLevel.NONE)
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;

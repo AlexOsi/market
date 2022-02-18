@@ -10,10 +10,10 @@ import java.util.Objects;
 
 @Entity
 @Getter
-@Setter(AccessLevel.PROTECTED)
+@Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "ORDER")
+@Table(name = "ORDERS")
 public class OrderEntity {
 
     @Setter(AccessLevel.NONE)
@@ -28,8 +28,12 @@ public class OrderEntity {
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     private List<PurchaseEntity> purchaseList;
 
+    @Enumerated(value = EnumType.STRING)
+    @JoinColumn(nullable = false)
     private OrderStatus status;
 
+    @Enumerated(value = EnumType.STRING)
+    @JoinColumn(nullable = false)
     private PaymentMethod payment;
 
     @Override

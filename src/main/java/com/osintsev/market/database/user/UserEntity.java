@@ -15,10 +15,10 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "USER")
+@Table(name = "USERS")
 public class UserEntity {
 
-    @Setter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.NONE)
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
     private String name;
@@ -26,9 +26,6 @@ public class UserEntity {
     @Column(nullable = false, unique = true)
     @NaturalId(mutable = true)
     private String email;
-
-    @Column(nullable = false)
-    private String password;
 
     @Setter(AccessLevel.NONE)
     @ToString.Exclude
