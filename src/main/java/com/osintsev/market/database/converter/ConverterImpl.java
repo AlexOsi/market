@@ -38,9 +38,8 @@ public class ConverterImpl implements Converter {
         beat.setAudio(audioEntityToAudio(beatEntity.getAudio()));
         return beat;
     }
-    @Override
-    public BeatEntity beatDetailedToBeatEntity(BeatDetailed beatDetailed) {
-        BeatEntity beatEntity = new BeatEntity();
+
+    public void beatDetailedToBeatEntityTransferData(BeatDetailed beatDetailed, BeatEntity beatEntity) {
         beatEntity.setName(beatDetailed.getName());
         beatEntity.setImage(beatDetailed.getImage());
         beatEntity.setPrice(beatDetailed.getPrice());
@@ -49,8 +48,16 @@ public class ConverterImpl implements Converter {
         beatEntity.setGenre(beatDetailed.getGenre());
         beatEntity.setKey(beatDetailed.getKey());
         beatEntity.setLoadDate(beatDetailed.getLoadDate());
+        System.out.println(beatEntity.getPrice());
+    }
+    @Override
+    public BeatEntity beatDetailedToBeatEntity(BeatDetailed beatDetailed) {
+        BeatEntity beatEntity = new BeatEntity();
+        beatDetailedToBeatEntityTransferData(beatDetailed, beatEntity);
         return beatEntity;
     }
+
+
     @Override
     public UserEntity userToUserEntity(User user) {
         UserEntity userEntity = new UserEntity();

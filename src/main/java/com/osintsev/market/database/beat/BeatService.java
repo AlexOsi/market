@@ -11,4 +11,5 @@ public interface BeatService {
     BeatDetailed getBeatDetailed(Long id) throws BeatNotFoundException;
     void createDetailedBeat(BeatDetailed beatDetailed);
     void deleteBeat(Long id);
+    void changeBeat(BeatDetailed beatDetailed);
 }

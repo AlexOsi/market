@@ -16,6 +16,8 @@ public interface Converter {
 
     BeatEntity beatDetailedToBeatEntity(BeatDetailed beatDetailed);
 
+    void beatDetailedToBeatEntityTransferData(BeatDetailed beatDetailed, BeatEntity beatEntity);
+
     UserEntity userToUserEntity(User user);
 
     User userEntityToUser(UserEntity userEntity);
@@ -26,3 +28,4 @@ public interface Converter {
 
     OrderEntity orderToOrderEntity(Order order);
 }
+

@@ -71,5 +71,14 @@ public class BeatServiceImpl implements BeatService {
         beatRepository.deleteById(id);
     }
 
+    @Override
+    public void changeBeat(BeatDetailed beatDetailed) {
+        BeatEntity beatEntity = beatRepository.findById(beatDetailed.getId()).orElseThrow(() ->
+                new BeatNotFoundException("Beat doesn't exist"));
+        converter.beatDetailedToBeatEntityTransferData(beatDetailed, beatEntity);
+        System.out.println(beatEntity.getPrice());
+        beatRepository.save(beatEntity);
+    }
+
 
 }

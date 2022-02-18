@@ -2,7 +2,6 @@ package com.osintsev.market.rest.controller;
 
 import com.osintsev.market.database.beat.BeatService;
 import com.osintsev.market.database.order.OrderService;
-import com.osintsev.market.database.order.OrderStatus;
 import com.osintsev.market.database.user.UserService;
 import com.osintsev.market.rest.dto.BeatDetailed;
 import com.osintsev.market.rest.dto.Order;
@@ -45,13 +44,13 @@ public class AdminController {
         return modelAndView;
     }
 
+
     @GetMapping("/users")
     public ModelAndView getUsers() {
         ModelAndView modelAndView = new ModelAndView("users");
         modelAndView.addObject("users", userService.getUsers());
         return modelAndView;
     }
-
 
     @GetMapping("/order/{id}")
     public ModelAndView getOrder(@PathVariable Long id) {
@@ -63,7 +62,6 @@ public class AdminController {
 
     @PostMapping("/order/{id}/status") // PatchMapping
     public RedirectView changeOrderStatus(@PathVariable Long id, Order order) {
-        System.out.println(order.getStatus());
         orderService.changeStatus(id, order.getStatus());
         return new RedirectView(String.format("/admin/order/%d", id));
     }
@@ -93,7 +91,18 @@ public class AdminController {
         beatService.deleteBeat(id);
         return new RedirectView("/admin/beats");
     }
-    // Изменять вообще в принципе бит editBeat
+
+    @GetMapping("/beat/{id}/edit")
+    public ModelAndView getEditBeatPage(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("edit-beat");
+        modelAndView.addObject("beat", beatService.getBeatDetailed(id));
+        return modelAndView;
+    }
+    @PostMapping("/beat/{id}/edit")
+    public RedirectView changeBeatPerform(@PathVariable Long id, BeatDetailed beatDetailed) {
+        beatService.changeBeat(beatDetailed);
+        return new RedirectView(String.format("/admin/beat/%d", id));
+    }
 
     @PostMapping(value = "/beat/create")
     public RedirectView createBeat(BeatDetailed beat){

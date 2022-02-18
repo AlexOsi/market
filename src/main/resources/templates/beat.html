@@ -42,6 +42,9 @@
         <td th:text="${beat.BPM}"></td>
         <td th:text="${beat.key}"></td>
         <td>
+            <a th:href="@{/admin/beat/{id}/edit (id=${beat.id})}">Edit</a>
+        </td>
+        <td>
             <form action="#" method="get" th:action="@{/admin/beat/delete/{id}(id=${beat.id})}">
                 <input type="submit" value="Delete"/>
             </form>
