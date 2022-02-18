@@ -11,10 +11,7 @@
     }
 </style>
 <body>
-<h3>
-    <a th:href="@{/admin/orders}"><-Orders list</a>
-</h3>
-<!-- Как вариант прокидывать order, как второй вариант - создать DTO OrderStatus -->
+<a th:href="@{/admin/orders}"><-Orders list</a>
 <form action="#" th:action="@{/admin/order/{id}/status(id=${order.id})}" th:object="${order}" method="post">
     <label for="status"></label>
     <select id="status" name="status">

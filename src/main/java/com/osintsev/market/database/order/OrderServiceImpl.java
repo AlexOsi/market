@@ -55,7 +55,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order getOrder(Long id) {
-    OrderEntity orderEntity = orderRepository.findById(id).orElseThrow(RuntimeException::new);
+    OrderEntity orderEntity = orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException("No such orders"));
     return converter.orderEntityToOrder(orderEntity);
     }
 
