@@ -14,7 +14,7 @@ import java.util.List;
 public class Beats {
     @NotNull
     @Schema(required = true)
-    @JsonProperty("beat_list")
+    @JsonProperty("beatList")
     private List<Beat> beatList;
 
 }
