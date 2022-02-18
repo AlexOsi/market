@@ -8,6 +8,7 @@ import com.osintsev.market.rest.dto.Beats;
 public interface BeatService {
     Beats getBeats();
     Beat getBeat(Long id) throws BeatNotFoundException;
-    BeatDetailed getDetailedBeat(Long id) throws BeatNotFoundException;
+    BeatDetailed getBeatDetailed(Long id) throws BeatNotFoundException;
     void createDetailedBeat(BeatDetailed beatDetailed);
+    void deleteBeat(Long id);
 }

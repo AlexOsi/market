@@ -32,7 +32,7 @@ public class BeatController {
 
     @GetMapping(value = "beat/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public BeatDetailed getDetailedBeat(@PathVariable Long id) {
-        return beatService.getDetailedBeat(id);
+        return beatService.getBeatDetailed(id);
     }
 
     @PostMapping(path = "beat/create",
