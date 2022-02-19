@@ -14,9 +14,9 @@ import javax.validation.constraints.Null;
 @Validated
 public class Purchase {
     @Null
-    @Schema(description = "id")
-    @JsonProperty("beatId")
-    private Long beatId;
+    @Schema(description = "beat")
+    @JsonProperty("beat")
+    private Beat beat;
 
     @NotNull
     @Schema(description = "license type")

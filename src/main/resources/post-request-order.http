@@ -9,7 +9,9 @@ Content-Type: application/json
   },
   "purchaseList": [
     {
-      "beatId": 1,
+      "beat": {
+        "id" : 1
+      },
       "license": "MP3"
     }
   ],

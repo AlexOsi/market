@@ -1,12 +1,10 @@
 package com.osintsev.market.database.order;
 
-import com.osintsev.market.database.beat.BeatEntity;
 import com.osintsev.market.database.beat.BeatRepository;
 import com.osintsev.market.database.converter.Converter;
 import com.osintsev.market.database.user.UserRepository;
+import com.osintsev.market.exception.BeatNotFoundException;
 import com.osintsev.market.exception.OrderNotFoundException;
-import com.osintsev.market.rest.dto.Beat;
-import com.osintsev.market.rest.dto.Beats;
 import com.osintsev.market.rest.dto.Order;
 import com.osintsev.market.rest.dto.User;
 import org.springframework.stereotype.Service;
@@ -39,7 +37,8 @@ public class OrderServiceImpl implements OrderService {
                 .map(purchase -> {
                     PurchaseEntity purchaseEntity = new PurchaseEntity();
                     purchaseEntity.setOrder(orderEntity);
-                    purchaseEntity.setBeat(beatRepository.findById(purchase.getBeatId()).orElseThrow(RuntimeException::new));
+                    purchaseEntity.setBeat(beatRepository.findById(purchase.getBeat().getId())
+                            .orElseThrow(() -> new BeatNotFoundException("Beat not found")));
                     purchaseEntity.setLicense(purchase.getLicense());
                     return purchaseEntity;
                 }).collect(Collectors.toList()));

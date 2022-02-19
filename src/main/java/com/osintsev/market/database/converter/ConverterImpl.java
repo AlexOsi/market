@@ -76,7 +76,7 @@ public class ConverterImpl implements Converter {
     @Override
     public Purchase purchaseEntityToPurchase(PurchaseEntity purchaseEntity) {
         Purchase purchase = new Purchase();
-        purchase.setBeatId(purchaseEntity.getBeat().getId());
+        purchase.setBeat(beatEntityToBeat(purchaseEntity.getBeat()));
         purchase.setLicense(purchaseEntity.getLicense());
         return purchase;
     }
